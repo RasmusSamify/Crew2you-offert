@@ -1,0 +1,1186 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Offert — Crew2you Bokningssystem | Samify</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #faf8f3;
+    --surface: #ffffff;
+    --surface-alt: #f5f2ea;
+    --border: #e8e2d4;
+    --border-strong: #d4cdb8;
+    --ink: #1c1a15;
+    --ink-soft: #3d3930;
+    --ink-muted: #6b6656;
+    --ink-faint: #9c9581;
+    --gold: #c4a758;
+    --gold-dark: #a88c42;
+    --gold-light: #e8dcb8;
+    --gold-bg: #faf4e3;
+    --green: #059669;
+    --green-bg: #ecfdf5;
+    --shadow-sm: 0 1px 3px rgba(28, 26, 21, 0.06);
+    --shadow-md: 0 4px 16px rgba(28, 26, 21, 0.08);
+    --shadow-lg: 0 20px 50px rgba(28, 26, 21, 0.15);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+    font-size: 15px;
+  }
+  .serif { font-family: 'Montserrat', sans-serif; font-weight: 900; letter-spacing: -0.03em; text-transform: none; }
+
+  .container { max-width: 1120px; margin: 0 auto; padding: 0 32px; }
+  button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+  svg { flex-shrink: 0; }
+  .icon { width: 20px; height: 20px; stroke-width: 1.75; }
+  .icon-sm { width: 14px; height: 14px; stroke-width: 2; }
+
+  /* ============ HEADER ============ */
+  .site-header {
+    padding: 24px 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0; z-index: 10;
+    backdrop-filter: blur(8px);
+    background: rgba(255,255,255,0.92);
+  }
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logos {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .logos img { height: 40px; width: auto; }
+  .logos .divider {
+    width: 1px; height: 32px;
+    background: var(--border-strong);
+  }
+  .samify-mark {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: 18px;
+    color: var(--ink);
+    letter-spacing: -0.02em;
+    text-transform: lowercase;
+  }
+  .samify-mark .dot { color: var(--gold); }
+  .header-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .header-meta .chip {
+    padding: 4px 10px;
+    background: var(--gold-bg);
+    color: var(--gold-dark);
+    border-radius: 14px;
+    font-weight: 600;
+    font-size: 11px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+
+  /* ============ HERO ============ */
+  .hero {
+    padding: 80px 0 64px;
+    background:
+      radial-gradient(circle at 10% 20%, rgba(196, 167, 88, 0.12) 0%, transparent 55%),
+      radial-gradient(circle at 90% 80%, rgba(196, 167, 88, 0.08) 0%, transparent 60%),
+      var(--bg);
+  }
+  .hero-label {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 18px;
+  }
+  .hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(38px, 5.6vw, 60px);
+    font-weight: 900;
+    letter-spacing: -0.035em;
+    line-height: 1.02;
+    max-width: 900px;
+    color: var(--ink);
+    margin-bottom: 24px;
+    text-transform: none;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold-dark);
+  }
+  .hero-sub {
+    font-size: 19px;
+    color: var(--ink-soft);
+    max-width: 620px;
+    margin-bottom: 40px;
+    line-height: 1.5;
+  }
+  .hero-meta {
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    padding-top: 32px;
+    border-top: 1px solid var(--border);
+  }
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hero-meta-item .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--ink-muted);
+    font-weight: 600;
+  }
+  .hero-meta-item .value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+
+  /* ============ SECTION ============ */
+  section {
+    padding: 80px 0;
+    scroll-margin-top: 100px;
+  }
+  section.alt { background: var(--surface); border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-eyebrow::before {
+    content: '';
+    width: 24px; height: 1px;
+    background: var(--gold);
+  }
+  .section-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(28px, 3.8vw, 40px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--ink);
+    margin-bottom: 16px;
+    max-width: 720px;
+  }
+  .section-lead {
+    font-size: 17px;
+    color: var(--ink-soft);
+    max-width: 640px;
+    margin-bottom: 48px;
+  }
+
+  /* ============ ROI CALCULATOR ============ */
+  .calc-grid {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+  .calc-controls {
+    background: var(--surface);
+    padding: 32px;
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+  .slider-group { margin-bottom: 28px; }
+  .slider-group:last-child { margin-bottom: 0; }
+  .slider-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 12px;
+  }
+  .slider-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .slider-label small {
+    display: block;
+    font-size: 12px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    margin-top: 2px;
+  }
+  .slider-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 26px;
+    font-weight: 800;
+    color: var(--gold-dark);
+    letter-spacing: -0.025em;
+  }
+  input[type="range"] {
+    width: 100%;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    -webkit-appearance: none;
+    appearance: none;
+    cursor: pointer;
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px; height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: grab;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(196, 167, 88, 0.4);
+    transition: transform 0.1s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover { transform: scale(1.15); }
+  input[type="range"]::-moz-range-thumb {
+    width: 20px; height: 20px;
+    background: var(--gold);
+    border-radius: 50%;
+    cursor: grab;
+    border: 3px solid white;
+    box-shadow: 0 2px 6px rgba(196, 167, 88, 0.4);
+  }
+
+  .calc-result {
+    background: linear-gradient(145deg, var(--ink) 0%, #2a2520 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .calc-result::before {
+    content: '';
+    position: absolute;
+    top: -40%; right: -10%;
+    width: 320px; height: 320px;
+    background: radial-gradient(circle, rgba(196, 167, 88, 0.3) 0%, transparent 65%);
+  }
+  .calc-result > * { position: relative; z-index: 1; }
+  .calc-result .tag {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 14px;
+  }
+  .calc-result .big {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 58px;
+    font-weight: 900;
+    letter-spacing: -0.045em;
+    line-height: 1;
+    color: white;
+    margin-bottom: 6px;
+  }
+  .calc-result .big span { color: var(--gold); }
+  .calc-result .unit { font-size: 18px; opacity: 0.7; margin-bottom: 28px; }
+  .calc-result .breakdown {
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .calc-result .row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+  }
+  .calc-result .row strong { color: white; font-weight: 600; }
+  .calc-footnote {
+    grid-column: 1 / -1;
+    font-size: 13px;
+    color: var(--ink-muted);
+    text-align: center;
+    margin-top: 32px;
+    padding: 14px;
+    background: var(--surface-alt);
+    border-radius: 8px;
+  }
+
+  /* ============ PRICING ============ */
+  .tiers {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 32px;
+  }
+  .tier {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 36px 28px;
+    position: relative;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .tier:hover { border-color: var(--border-strong); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .tier.featured {
+    border-color: var(--gold);
+    box-shadow: 0 4px 24px rgba(196, 167, 88, 0.15);
+    background: linear-gradient(180deg, var(--gold-bg) 0%, var(--surface) 20%);
+  }
+  .tier.featured::before {
+    content: 'REKOMMENDERAS';
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gold);
+    color: white;
+    padding: 5px 14px;
+    border-radius: 14px;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 1.2px;
+  }
+  .tier.selected {
+    border-color: var(--ink) !important;
+    box-shadow: 0 0 0 3px var(--ink), 0 10px 30px rgba(28, 26, 21, 0.15) !important;
+    transform: translateY(-2px);
+  }
+  .tier.selected.featured {
+    border-color: var(--gold) !important;
+    box-shadow: 0 0 0 3px var(--gold), 0 10px 30px rgba(196, 167, 88, 0.25) !important;
+  }
+  .tier.selected .tier-cta {
+    pointer-events: none;
+  }
+  .selected-indicator {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 28px; height: 28px;
+    background: var(--ink);
+    color: white;
+    border-radius: 50%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+  }
+  .tier.featured .selected-indicator { background: var(--gold); }
+  .tier.selected .selected-indicator { display: flex; }
+  .tier-name {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .tier-desc {
+    font-size: 13px;
+    color: var(--ink-muted);
+    margin-bottom: 28px;
+    min-height: 40px;
+  }
+  .tier-price-block {
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--border);
+  }
+  .tier-price {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.04em;
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    gap: 6px;
+  }
+  .tier-price .currency { font-size: 24px; color: var(--ink-muted); font-weight: 500; }
+  .tier-price .per { font-size: 14px; color: var(--ink-muted); font-weight: 500; margin-left: 4px; }
+  .tier-setup {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--ink-muted);
+  }
+  .tier-setup strong { color: var(--ink); font-weight: 600; }
+  .feature-list { list-style: none; margin-bottom: 28px; }
+  .feature-list li {
+    position: relative;
+    padding: 7px 0 7px 26px;
+    font-size: 13.5px;
+    color: var(--ink-soft);
+    line-height: 1.5;
+  }
+  .feature-list li svg {
+    position: absolute;
+    left: 0;
+    top: 10px;
+    color: var(--green);
+    flex-shrink: 0;
+  }
+  .feature-list li.disabled { color: var(--ink-faint); }
+  .feature-list li.disabled svg { color: var(--ink-faint); }
+  .feature-list li strong { color: var(--ink); font-weight: 700; }
+
+  .tier-cta {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    text-align: center;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 14px;
+    transition: all 0.15s;
+    letter-spacing: -0.005em;
+  }
+  .tier-cta.primary { background: var(--ink); color: white; }
+  .tier-cta.primary:hover { background: var(--ink-soft); }
+  .tier-cta.gold { background: var(--gold); color: white; }
+  .tier-cta.gold:hover { background: var(--gold-dark); }
+  .tier-cta.outline { border: 1px solid var(--border-strong); color: var(--ink); }
+  .tier-cta.outline:hover { border-color: var(--ink); background: var(--surface-alt); }
+
+  /* ============ INCLUDED BREAKDOWN ============ */
+  .included-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .included-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+  }
+  .included-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .included-card .price-tag {
+    font-size: 14px;
+    color: var(--gold-dark);
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .included-item {
+    padding: 14px 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .included-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .included-item .num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    color: var(--gold);
+    font-weight: 900;
+    flex-shrink: 0;
+    min-width: 28px;
+    letter-spacing: 0;
+  }
+  .included-item h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 2px;
+  }
+  .included-item p {
+    font-size: 13px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+  }
+
+  /* ============ COMPARE TABLE ============ */
+  .compare-wrap {
+    overflow-x: auto;
+    background: var(--surface);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+  }
+  table.compare {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13.5px;
+  }
+  table.compare th, table.compare td {
+    padding: 16px 20px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  table.compare th {
+    background: var(--surface-alt);
+    font-weight: 700;
+    color: var(--ink);
+    font-size: 13px;
+    position: sticky; top: 0;
+  }
+  table.compare th.featured { background: var(--gold-bg); color: var(--gold-dark); }
+  table.compare tr:last-child td { border-bottom: none; }
+  table.compare td:first-child { font-weight: 500; color: var(--ink); }
+  table.compare td.center { text-align: center; }
+  table.compare td.featured { background: #fefcf5; }
+  .yes-mark { color: var(--green); font-weight: 700; }
+  .no-mark { color: var(--ink-faint); }
+
+  /* ============ TERMS ============ */
+  .terms {
+    background: var(--surface-alt);
+    border-radius: 16px;
+    padding: 36px;
+    border: 1px solid var(--border);
+  }
+  .terms-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px 48px;
+  }
+  .terms-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .terms-item svg { color: var(--gold-dark); margin-top: 3px; flex-shrink: 0; }
+  .terms-item h4 { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+  .terms-item p { font-size: 13px; color: var(--ink-muted); line-height: 1.55; }
+
+  /* ============ CTA / NEXT STEPS ============ */
+  .cta-box {
+    background: linear-gradient(135deg, var(--ink) 0%, #2a2520 100%);
+    color: white;
+    padding: 56px 48px;
+    border-radius: 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .cta-box::before {
+    content: '';
+    position: absolute;
+    top: -50%; left: 50%;
+    transform: translateX(-50%);
+    width: 640px; height: 640px;
+    background: radial-gradient(circle, rgba(196, 167, 88, 0.15) 0%, transparent 55%);
+  }
+  .cta-box > * { position: relative; z-index: 1; }
+  .cta-box h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(28px, 3.8vw, 40px);
+    font-weight: 900;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    margin-bottom: 14px;
+    text-transform: none;
+  }
+  .cta-box h2 em { font-style: italic; color: var(--gold); }
+  .cta-box p {
+    font-size: 17px;
+    opacity: 0.8;
+    max-width: 580px;
+    margin: 0 auto 32px;
+    line-height: 1.55;
+  }
+  .cta-buttons { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .cta-btn {
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-weight: 700;
+    font-size: 15px;
+    transition: all 0.15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: -0.005em;
+  }
+  .cta-btn.gold { background: var(--gold); color: var(--ink); }
+  .cta-btn.gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+  .cta-btn.ghost { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.25); }
+  .cta-btn.ghost:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* ============ FOOTER ============ */
+  .site-footer {
+    padding: 48px 0 64px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+  }
+  .footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+  .footer-meta { font-size: 13px; color: var(--ink-muted); }
+  .footer-meta strong { color: var(--ink); font-weight: 600; }
+  .footer-contact { font-size: 13px; color: var(--ink-muted); }
+  .footer-contact a { color: var(--gold-dark); text-decoration: none; font-weight: 500; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .calc-grid { grid-template-columns: 1fr; }
+    .tiers { grid-template-columns: 1fr; gap: 16px; }
+    .tier.featured { order: -1; }
+    .included-grid { grid-template-columns: 1fr; }
+    .terms-grid { grid-template-columns: 1fr; }
+    section { padding: 56px 0; }
+    .hero { padding: 56px 0 40px; }
+    .container { padding: 0 20px; }
+  }
+  @media print {
+    .site-header { position: static; background: white; }
+    .hero, section { padding: 32px 0; page-break-inside: avoid; }
+    .tier:hover { transform: none; box-shadow: var(--shadow-sm); }
+    .cta-box { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute;">
+  <defs>
+    <symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+    <symbol id="i-arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></symbol>
+    <symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></symbol>
+    <symbol id="i-zap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></symbol>
+    <symbol id="i-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67 0C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></symbol>
+    <symbol id="i-trending" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+    <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8M21 3v5h-5M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16M8 16H3v5"/></symbol>
+    <symbol id="i-file" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z"/><path d="M14 2v4a2 2 0 0 0 2 2h4"/></symbol>
+    <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  </defs>
+</svg>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <div class="logos">
+      <img src="https://axypazcbgcogtdqqimvi.supabase.co/storage/v1/object/public/Bilder/main-logo.png" alt="Crew2you">
+      <div class="divider"></div>
+      <div class="samify-mark">samify<span class="dot">.</span></div>
+    </div>
+    <div class="header-meta">
+      <span class="chip">Konfidentiell offert</span>
+      <span>2026-04-14</span>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" style="padding-top: 72px;">
+  <div class="container">
+    <div class="hero-label">Offert · Bokningssystem</div>
+    <h1 class="serif">
+      Ett skräddarsytt bokningssystem för <em>Crew2you</em> — byggt från ert befintliga arbetsflöde.
+    </h1>
+    <p class="hero-sub">
+      Ersätter Excel, webbformuläret och den manuella mailhanteringen med en strukturerad pipeline, mobilapp för personal, AI-matchning och automatiserade flöden.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Kund</span>
+        <span class="value">Crew2you Sverige AB</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Leverantör</span>
+        <span class="value">Samify AB</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Gäller t.o.m.</span>
+        <span class="value">2026-05-14</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Version</span>
+        <span class="value">1.0</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ROI ============ -->
+<section class="alt">
+  <div class="container">
+    <div class="section-eyebrow">Värdekalkyl</div>
+    <h2 class="section-title">Vad systemet är värt för Crew2you — räkna själv.</h2>
+    <p class="section-lead">Justera värdena nedan för att matcha er verklighet. Beräkningen uppdateras live.</p>
+
+    <div class="calc-grid">
+      <div class="calc-controls">
+        <div class="slider-group">
+          <div class="slider-head">
+            <div class="slider-label">Uppdrag per månad<small>Bokningar, plock, demos, event totalt</small></div>
+            <div class="slider-value" id="v-bokningar">45</div>
+          </div>
+          <input type="range" id="r-bokningar" min="10" max="150" value="45" oninput="calcRoi()">
+        </div>
+        <div class="slider-group">
+          <div class="slider-head">
+            <div class="slider-label">Admin-tid per vecka<small>Bokningar, mail, ringa personal, fakturaunderlag</small></div>
+            <div class="slider-value"><span id="v-tid">12</span> <span style="font-size:14px; color:var(--ink-muted); font-weight:500;">h</span></div>
+          </div>
+          <input type="range" id="r-tid" min="4" max="30" value="12" oninput="calcRoi()">
+        </div>
+        <div class="slider-group">
+          <div class="slider-head">
+            <div class="slider-label">Värde per timme<small>Vad er administrativa tid är värd</small></div>
+            <div class="slider-value"><span id="v-timpris">500</span> <span style="font-size:14px; color:var(--ink-muted); font-weight:500;">kr</span></div>
+          </div>
+          <input type="range" id="r-timpris" min="250" max="1200" step="50" value="500" oninput="calcRoi()">
+        </div>
+      </div>
+
+      <div class="calc-result">
+        <div class="tag">Månatlig besparing</div>
+        <div class="big"><span id="v-besparing">24&nbsp;000</span> <span style="font-size:36px;">kr</span></div>
+        <div class="unit">per månad, enligt era värden</div>
+        <div class="breakdown">
+          <div class="row"><span>Tidsbesparing automatiseringen ger</span><strong id="v-auto">80%</strong></div>
+          <div class="row"><span>Besparad tid per månad</span><strong><span id="v-timmar">38</span> h</strong></div>
+          <div class="row"><span>Årlig besparing</span><strong><span id="v-arligt">288&nbsp;000</span> kr</strong></div>
+          <div class="row" style="padding-top:8px; border-top:1px solid rgba(255,255,255,0.15); margin-top:4px;"><span>Återbetalningstid Pro-paketet</span><strong><span id="v-payback">1,8</span> mån</strong></div>
+        </div>
+      </div>
+
+      <div class="calc-footnote">
+        Beräkningen utgår från en automatiseringsgrad på 80 % av er admin-tid på bokningshantering.
+        Faktisk besparing varierar — låt oss verifiera tillsammans på er faktiska data innan driftsättning.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRICING ============ -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Prissättning</div>
+    <h2 class="section-title">Tre paket att välja mellan.</h2>
+    <p class="section-lead">Alla paket inkluderar drift, hosting, support och alla framtida uppdateringar. Ingen timdebitering, inga dolda tillägg.</p>
+
+    <div class="tiers">
+      <!-- BAS -->
+      <div class="tier" data-tier="bas" onclick="selectTier('bas')"><div class="selected-indicator"><svg class="icon-sm"><use href="#i-check"/></svg></div>
+        <div class="tier-name">Bas</div>
+        <div class="tier-desc">Grundläggande bokningssystem med personalapp och pipeline.</div>
+        <div class="tier-price-block">
+          <div class="tier-price">4 995<span class="currency">kr</span><span class="per">/mån</span></div>
+          <div class="tier-setup">Engångskostnad: <strong>29 000 kr</strong></div>
+        </div>
+        <ul class="feature-list">
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Bokningssystem + pipeline (7 steg)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Personal-, kund- och butiksregister</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Mobilapp för personal (utlägg + återrapport)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Kundportal (återrapporter, bokningar)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Fakturaunderlag (CSV-export)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Supabase-backend, autentisering</li>
+          <li class="disabled"><svg class="icon-sm"><use href="#i-x"/></svg>AI-mailparsning</li>
+          <li class="disabled"><svg class="icon-sm"><use href="#i-x"/></svg>AI-matchning av personal</li>
+        </ul>
+        <button class="tier-cta outline">Välj Bas</button>
+      </div>
+
+      <!-- PRO -->
+      <div class="tier featured selected" data-tier="pro" onclick="selectTier('pro')"><div class="selected-indicator"><svg class="icon-sm"><use href="#i-check"/></svg></div>
+        <div class="tier-name">Pro</div>
+        <div class="tier-desc">Full automation. Det vi tror passar er bäst.</div>
+        <div class="tier-price-block">
+          <div class="tier-price">9 995<span class="currency">kr</span><span class="per">/mån</span></div>
+          <div class="tier-setup">Engångskostnad: <strong>35 000 kr</strong></div>
+        </div>
+        <ul class="feature-list">
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>Allt i Bas</strong>, plus:</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>Samify Autoflow™</strong> (8 automationer)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>AI-mailparsning</strong> — inkomna bokningar skapas automatiskt</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>AI-matchning</strong> av personal (topp 3 förslag)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Automatiska bekräftelsemail + SMS-påminnelser</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Slack-notiser till kontoret</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Veckorapport till uppdragsgivare</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>500 SMS per månad inkluderat</li>
+        </ul>
+        <button class="tier-cta gold">Välj Pro</button>
+      </div>
+
+      <!-- ENTERPRISE -->
+      <div class="tier" data-tier="enterprise" onclick="selectTier('enterprise')"><div class="selected-indicator"><svg class="icon-sm"><use href="#i-check"/></svg></div>
+        <div class="tier-name">Enterprise</div>
+        <div class="tier-desc">För när systemet är navet i hela ekonomiflödet.</div>
+        <div class="tier-price-block">
+          <div class="tier-price">14 995<span class="currency">kr</span><span class="per">/mån</span></div>
+          <div class="tier-setup">Engångskostnad: <strong>59 000 kr</strong></div>
+        </div>
+        <ul class="feature-list">
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>Allt i Pro</strong>, plus:</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>Fortnox-integration</strong> (automatisk fakturering)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg><strong>Lönesystemsexport</strong> (SIE-format)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Egen domän (bokning.crew2you.se)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Kalendersync (Google / Outlook)</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>SLA — 8h responstid vardagar</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Månatligt strategimöte</li>
+          <li><svg class="icon-sm"><use href="#i-check"/></svg>Obegränsat med SMS</li>
+        </ul>
+        <button class="tier-cta primary">Välj Enterprise</button>
+      </div>
+    </div>
+
+    <div style="text-align:center; font-size:13px; color:var(--ink-muted); margin-top:16px;">
+      Alla priser exklusive moms. Upp till 100 uppdrag/mån ingår i Pro — över det tillkommer 500 kr/mån per 50 extra.
+    </div>
+  </div>
+</section>
+
+<!-- ============ INCLUDED BREAKDOWN ============ -->
+<section class="alt" id="includedSection">
+  <div class="container">
+    <div class="section-eyebrow">Vad som ingår</div>
+    <h2 class="section-title">Visas för <span id="selectedTierName" style="color:var(--gold-dark);">Pro</span>-paketet.</h2>
+    <p class="section-lead">Klicka på ett annat paket ovan så uppdateras listan här. Allt är transparent — det som visas är det som ingår.</p>
+
+    <div class="included-grid" id="includedGrid">
+      <!-- Fylls dynamiskt -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPARE TABLE ============ -->
+<section>
+  <div class="container">
+    <div class="section-eyebrow">Jämförelse</div>
+    <h2 class="section-title">Funktion för funktion.</h2>
+
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th style="min-width: 300px;">Funktion</th>
+            <th class="center">Bas</th>
+            <th class="featured center">Pro</th>
+            <th class="center">Enterprise</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Bokningspipeline (7 steg)</td><td class="center"><span class="yes-mark">✓</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Personal-, kund- &amp; butiksregister</td><td class="center"><span class="yes-mark">✓</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Mobilapp (utlägg + återrapport)</td><td class="center"><span class="yes-mark">✓</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Kundportal</td><td class="center"><span class="yes-mark">✓</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Fakturaunderlag (CSV)</td><td class="center"><span class="yes-mark">✓</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>AI-parsning av inkomna bokningsmail</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>AI-matchning av personal (topp 3)</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Automatiska bekräftelsemail</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>SMS-påminnelser till personal</td><td class="center"><span class="no-mark">—</span></td><td class="featured center">500 SMS/mån</td><td class="center">Obegränsat</td></tr>
+          <tr><td>Slack-notiser</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Veckorapport till kund</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="yes-mark">✓</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Fortnox-integration</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="no-mark">—</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Lönesystemsexport (SIE)</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="no-mark">—</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Egen domän (bokning.crew2you.se)</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="no-mark">—</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>Kalendersync (Google/Outlook)</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="no-mark">—</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+          <tr><td>SLA-garanti (responstid)</td><td class="center">48 h</td><td class="featured center">24 h</td><td class="center"><strong>8 h</strong></td></tr>
+          <tr><td>Månatligt strategimöte</td><td class="center"><span class="no-mark">—</span></td><td class="featured center"><span class="no-mark">—</span></td><td class="center"><span class="yes-mark">✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TERMS ============ -->
+<section class="alt">
+  <div class="container">
+    <div class="section-eyebrow">Villkor</div>
+    <h2 class="section-title">Transparent och rimligt.</h2>
+
+    <div class="terms">
+      <div class="terms-grid">
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-calendar"/></svg>
+          <div>
+            <h4>Bindningstid</h4>
+            <p>12 månader i första avtalet, sedan 3 månaders löpande bindning. Uppsägning 3 mån innan.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-lock"/></svg>
+          <div>
+            <h4>Dataägarskap</h4>
+            <p>All er data ägs av er. Vid uppsägning får ni fullständig export (CSV + JSON) av allt innehåll.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-shield"/></svg>
+          <div>
+            <h4>GDPR &amp; säkerhet</h4>
+            <p>Alla data lagras i Stockholm (Supabase eu-north-1). Dataskyddsavtal (DPA) ingår. Krypterat i vila och transit.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-trending"/></svg>
+          <div>
+            <h4>Volymanpassning</h4>
+            <p>Upp till 100 uppdrag/mån ingår. Över det tillkommer 500 kr/mån per 50 extra uppdrag.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-refresh"/></svg>
+          <div>
+            <h4>Uppgradering när som helst</h4>
+            <p>Gå från Bas till Pro eller Enterprise vid behov. Bara differensen i månadsavgift från uppgraderingsdatum.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-clock"/></svg>
+          <div>
+            <h4>Driftsättningstid</h4>
+            <p>Normalt 3–4 veckor från avtalet signeras till driftsatt system. Parallell körning mot Excel i 2 veckor.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-file"/></svg>
+          <div>
+            <h4>Betalningsvillkor</h4>
+            <p>Engångskostnad faktureras vid driftsättning, 30 dagars netto. Månadsavgift faktureras kvartalsvis i förskott.</p>
+          </div>
+        </div>
+        <div class="terms-item">
+          <svg class="icon"><use href="#i-zap"/></svg>
+          <div>
+            <h4>Inga dolda tillägg</h4>
+            <p>Allt som beskrivs i offerten ingår. Större skräddarsydda funktioner utanför paketet offereras separat.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA ============ -->
+<section style="padding-bottom: 0;">
+  <div class="container">
+    <div class="cta-box">
+      <h2 class="serif">Redo att göra <em>Crew2you</em> 40 % snabbare?</h2>
+      <p>Signera avtalet så är systemet i drift inom 3–4 veckor — med all er befintliga data migrerad från Excel och kontoret utbildat.</p>
+      <div class="cta-buttons">
+        <button class="cta-btn gold">Signera Pro-paketet · 9 995 kr/mån <svg class="icon-sm"><use href="#i-arrow-right"/></svg></button>
+        <button class="cta-btn ghost">Boka uppföljningsmöte</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-meta">
+      <strong>Samify AB</strong> (ZicLun AB / Samify Group AB) · Kalmar, Sverige · Org.nr 559XXX-XXXX
+    </div>
+    <div class="footer-contact">
+      <div>Adnan (försäljning): <a href="mailto:adnan@samify.se">adnan@samify.se</a></div>
+      <div>Rasmus (teknik): <a href="mailto:rasmus@samify.se">rasmus@samify.se</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============ TIER SELECTION ============ */
+const TIER_CONTENT = {
+  bas: {
+    name: 'Bas',
+    engang: {
+      price: '29 000 kr · betalas vid driftsättning',
+      items: [
+        { title: 'Discovery & kartläggning', desc: 'Vi går igenom er nuvarande Excel + webbinloggning, identifierar flaskhalsar och dokumenterar era fält.' },
+        { title: 'Datamigrering', desc: 'All befintlig kund-, butiks- och personaldata flyttas över från Excel till systemet.' },
+        { title: 'Supabase + Netlify-setup', desc: 'Backend i Stockholm-region (eu-north-1), autentisering, säkerhetskopior, SSL.' },
+        { title: 'Utbildning', desc: '1 h live-genomgång med kontoret, 30 min med personal-gruppen. Skriftlig snabbguide.' },
+        { title: 'Första månadens finslipning', desc: 'Efter driftsättning justerar vi allt som kommer fram när ni använder systemet på riktigt.' },
+      ]
+    },
+    manad: {
+      price: '4 995 kr/mån · löpande',
+      items: [
+        { title: 'Drift & hosting', desc: 'Supabase, Netlify, serverless functions, backup, SSL, övervakning.' },
+        { title: 'Bokningssystem med full pipeline', desc: '7-stegs arbetsflöde, bokningsregister, kund- och butiksregister med multi-kontakter.' },
+        { title: 'Mobilapp för personal', desc: 'Utlägg, återrapporter med foto, uppdragsöversikt — fungerar offline.' },
+        { title: 'Kundportal', desc: 'Era uppdragsgivare får egen inloggning för att se bokningar och återrapporter.' },
+        { title: 'Support & småändringar', desc: 'Mail-support på vardagar, 48h responstid. Mindre fält- och designändringar ingår.' },
+      ]
+    }
+  },
+  pro: {
+    name: 'Pro',
+    engang: {
+      price: '35 000 kr · betalas vid driftsättning',
+      items: [
+        { title: 'Discovery & djupkartläggning', desc: 'Allt i Bas plus genomgång av era autoflöden, mallar för mail/SMS och AI-prompts.' },
+        { title: 'Datamigrering + historik', desc: 'Kund-, butiks-, personaldata plus valfri historik av tidigare bokningar för AI-träning.' },
+        { title: 'Supabase + Netlify + AI-setup', desc: 'Backend, autentisering + Anthropic API-integration, Resend för mail, 46elks för SMS.' },
+        { title: 'Utbildning & handbok', desc: '2 h live-genomgång med kontoret, 1 h med personal-gruppen, skriftlig användarmanual.' },
+        { title: 'Samify Autoflow™-konfiguration', desc: 'Vi konfigurerar alla 8 automationer tillsammans med er, anpassade efter ert arbetsflöde.' },
+        { title: 'Första månadens finslipning', desc: 'Efter driftsättning justerar vi allt som kommer fram när ni använder systemet på riktigt.' },
+      ]
+    },
+    manad: {
+      price: '9 995 kr/mån · löpande',
+      items: [
+        { title: 'Allt i Bas', desc: 'Drift, hosting, bokningspipeline, mobilapp, kundportal, support.' },
+        { title: 'Samify Autoflow™', desc: '8 automationer: bekräftelser, SMS, påminnelser, Slack-notiser, veckorapporter, återrapporter till kund.' },
+        { title: 'AI-mailparsning', desc: 'Mail till bokning@crew2you.se läses av AI:n som skapar bokningar automatiskt eller ber om komplettering.' },
+        { title: 'AI-matchning av personal', desc: 'När ett uppdrag saknar personal föreslås topp 3 kandidater baserat på geografi, kompetens och historik.' },
+        { title: '500 SMS/mån + obegränsat mail', desc: 'SMS-påminnelser till personal, bekräftelser till butiker, återrapporter till kunder.' },
+        { title: 'Prioriterad support', desc: 'Mail- och Slack-support på vardagar, 24h responstid. Alla uppdateringar ingår utan extra kostnad.' },
+      ]
+    }
+  },
+  enterprise: {
+    name: 'Enterprise',
+    engang: {
+      price: '59 000 kr · betalas vid driftsättning',
+      items: [
+        { title: 'Discovery & djupkartläggning', desc: 'Tvådagars workshop för att kartlägga hela ert ekonomi- och bemanningsflöde.' },
+        { title: 'Komplett datamigrering', desc: 'All historisk data inkl. gamla bokningar, utlägg, fakturor — migrerat från Excel och andra system.' },
+        { title: 'Full integrationssetup', desc: 'Fortnox-synk, SIE-export till lönesystem, Google/Outlook-kalendersync, Slack-workspace-koppling.' },
+        { title: 'Egen domän + SSL', desc: 'bokning.crew2you.se eller valfri subdomän, inkl. SSL-certifikat och DNS-konfiguration.' },
+        { title: 'Utbildning (2 dagars workshop)', desc: 'Djupgående utbildning av både kontor, personal och uppdragsgivare. Skriftlig handbok per roll.' },
+        { title: 'Månatligt strategimöte-setup', desc: 'Vi etablerar ett återkommande forum där vi går igenom användning, flöden och nya behov.' },
+        { title: 'Första månadens finslipning', desc: 'Utökad finslipning med dedikerad tid varje vecka under första månaden.' },
+      ]
+    },
+    manad: {
+      price: '14 995 kr/mån · löpande',
+      items: [
+        { title: 'Allt i Pro', desc: 'Autoflow, AI-parsning, AI-matchning, 500 SMS, veckorapporter, kundportal.' },
+        { title: 'Fortnox-integration', desc: 'Fakturaunderlag synkas automatiskt till Fortnox när uppdrag markeras som genomförda.' },
+        { title: 'Lönesystemsexport (SIE)', desc: 'Automatisk export i SIE-format till valfritt lönesystem (Visma, Hogia, Fortnox Lön).' },
+        { title: 'Kalendersync (Google/Outlook)', desc: 'Uppdrag synkas live till personalens och kontorets kalendrar. Tvåvägs.' },
+        { title: 'Obegränsat SMS + mail', desc: 'Ingen volymbegränsning. Inkluderat i månadsavgiften oavsett hur många uppdrag ni har.' },
+        { title: 'SLA — 8h responstid', desc: 'Garanterad responstid inom 8 timmar på vardagar. Akutsupport efter arbetstid.' },
+        { title: 'Månatligt strategimöte', desc: '1 h per månad där vi går igenom användning, ROI, nya behov och kommande funktioner.' },
+        { title: 'Prioriterad utveckling', desc: 'Era önskemål prioriteras i roadmappen. Skräddarsydda funktioner till rabatterat timpris.' },
+      ]
+    }
+  }
+};
+
+function renderIncluded(tierKey) {
+  const tier = TIER_CONTENT[tierKey];
+  if (!tier) return;
+  const grid = document.getElementById('includedGrid');
+  grid.style.opacity = '0';
+  setTimeout(() => {
+    grid.innerHTML = `
+      <div class="included-card">
+        <h3>Engångskostnaden</h3>
+        <div class="price-tag">${tier.engang.price}</div>
+        ${tier.engang.items.map((it, i) => `
+          <div class="included-item">
+            <div class="num">${String(i+1).padStart(2, '0')}</div>
+            <div>
+              <h4>${it.title}</h4>
+              <p>${it.desc}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+      <div class="included-card">
+        <h3>Månadskostnaden</h3>
+        <div class="price-tag">${tier.manad.price}</div>
+        ${tier.manad.items.map((it, i) => `
+          <div class="included-item">
+            <div class="num">${String(i+1).padStart(2, '0')}</div>
+            <div>
+              <h4>${it.title}</h4>
+              <p>${it.desc}</p>
+            </div>
+          </div>
+        `).join('')}
+      </div>
+    `;
+    grid.style.opacity = '1';
+    document.getElementById('selectedTierName').textContent = tier.name;
+  }, 150);
+}
+
+function selectTier(tierKey) {
+  document.querySelectorAll('.tier').forEach(t => t.classList.toggle('selected', t.dataset.tier === tierKey));
+  document.querySelectorAll('.tier-cta').forEach(btn => {
+    const card = btn.closest('.tier');
+    const isSelected = card && card.dataset.tier === tierKey;
+    const origText = card ? `Välj ${card.querySelector('.tier-name').textContent}` : '';
+    btn.innerHTML = isSelected
+      ? `<svg class="icon-sm" style="vertical-align: -2px; margin-right: 6px;"><use href="#i-check"/></svg>Valt paket`
+      : origText;
+  });
+  renderIncluded(tierKey);
+}
+
+/* Init */
+renderIncluded('pro');
+setTimeout(() => selectTier('pro'), 100);
+
+/* Transition on grid */
+document.getElementById('includedGrid').style.transition = 'opacity 0.18s ease';
+function fmt(n) { return Math.round(n).toLocaleString('sv-SE').replace(/,/g, ' '); }
+
+function calcRoi() {
+  const bokningar = parseInt(document.getElementById('r-bokningar').value);
+  const tid = parseInt(document.getElementById('r-tid').value);
+  const timpris = parseInt(document.getElementById('r-timpris').value);
+
+  document.getElementById('v-bokningar').textContent = bokningar;
+  document.getElementById('v-tid').textContent = tid;
+  document.getElementById('v-timpris').textContent = timpris;
+
+  // Automation saves more as volume grows (diminishing floor)
+  const autoRate = Math.min(0.85, 0.65 + bokningar / 400);
+  const timmarSparadePerVecka = tid * autoRate;
+  const timmarSparadePerManad = timmarSparadePerVecka * 4.33;
+  const manadsBesparing = timmarSparadePerManad * timpris;
+  const arligBesparing = manadsBesparing * 12;
+
+  const proKostnad = 9995;
+  const engangPror = 35000;
+  const payback = (engangPror / (manadsBesparing - proKostnad));
+
+  document.getElementById('v-auto').textContent = Math.round(autoRate * 100) + '%';
+  document.getElementById('v-timmar').textContent = fmt(timmarSparadePerManad);
+  document.getElementById('v-besparing').innerHTML = fmt(manadsBesparing).replace(/ /g, '&nbsp;');
+  document.getElementById('v-arligt').innerHTML = fmt(arligBesparing).replace(/ /g, '&nbsp;');
+  document.getElementById('v-payback').textContent = payback > 0 && isFinite(payback) ? payback.toFixed(1) : '—';
+}
+calcRoi();
+</script>
+
+</body>
+</html>
